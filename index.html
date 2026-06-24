@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商务英语学习阅读器</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 已成功引入 app.js 脚本 -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧栏：历史记录 -->
+        <aside class="sidebar">
+            <h2>历史文章</h2>
+            <ul id="history-list">
+                <li class="loading">加载中...</li>
+            </ul>
+        </aside>
+
+        <!-- 右侧：文章阅读区域 -->
+        <main class="content-area">
+            <header class="article-header">
+                <div class="meta-info">
+                    <span id="article-date">-----</span> | 
+                    <span id="article-source">-----</span>
+                </div>
+                <h1 id="article-title">欢迎使用商务英语阅读器</h1>
+                <div class="toolbar">
+                    <button id="btn-tts" class="btn">🔊 语音朗读</button>
+                    <button id="btn-tts-stop" class="btn" style="display:none;">⏱ 停止</button>
+                    <span class="tip">提示：双击网页中的英文单词可快速翻译</span>
+                </div>
+            </header>
+
+            <article class="article-body" id="article-body">
+                <p>请在左侧选择一篇文章开始阅读。</p>
+            </article>
+        </main>
+    </div>
+
+    <!-- 简易单词翻译弹窗 -->
+    <div id="dict-popup" class="dict-popup" style="display: none;">
+        <span id="selected-word">word</span>
+        <button id="btn-lookup">在有道词典中查看</button>
+    </div>
+</body>
+</html>

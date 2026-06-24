@@ -1,0 +1,33 @@
+name: Daily Business English Fetcher
+
+on:
+  schedule:
+    # 每天北京时间早上 8:00 自动运行 (UTC 时间 00:00)
+    - cron: '0 0 * * *'
+  # 允许手动触发测试
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Fetch Today's Article
+      run: python scripts/fetch_article.py
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add data/
+        # 如果有新文章则提交，没有则跳过
+        git diff-index --quiet HEAD || git commit -m "Auto-update: Daily article $(date +'%Y-%m-%d')"
+        git push
